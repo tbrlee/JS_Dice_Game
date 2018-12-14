@@ -32,19 +32,43 @@ let scores = [0,0], //Initial zero point score for two player sides
         document.querySelector('#current-' + activePlayer).textContent = roundScore;
     }
     else {
-        //Next player
-        activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
-        roundScore = 0;
-
-        document.getElementById('current-0').textContent = '0';
-        document.getElementById('current-1').textContent = '0';
-
-        //Toggling which is the active player 
-        document.querySelector('.player-0-panel').classList.toggle('active');
-        document.querySelector('.player-1-panel').classList.toggle('active');
-
-        document.querySelector('.dice').style.display = 'none';
-
+    nextPlayer();
     }
  });
 
+ document.querySelector('.btn-hold').addEventListener('click', function(e) {
+     //Add currrent score to the player as record after hold button is pressed
+     scores[activePlayer] +=roundScore;
+     
+     //Update Hold scorepoint UI
+    document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
+
+    //Check if the player won the game
+    if (scores[activePlayer] >= 40) {
+        document.querySelector('#name-'+ activePlayer).textContent = 'Winner!';
+        document.querySelector('.dice').style.display = 'none';
+        document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
+        document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+    } else {
+        nextPlayer();
+    }
+
+ });
+
+ //method for determining which player and toggling their turns
+ function nextPlayer() {
+    //Next player
+    activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+    roundScore = 0;
+
+    document.getElementById('current-0').textContent = '0';
+    document.getElementById('current-1').textContent = '0';
+
+    //Toggling which is the active player 
+    document.querySelector('.player-0-panel').classList.toggle('active');
+    document.querySelector('.player-1-panel').classList.toggle('active');
+
+    //Clear the dice image after the  reset for another player 
+    document.querySelector('.dice').style.display = 'none';   
+
+ }

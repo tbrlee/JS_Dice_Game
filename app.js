@@ -8,15 +8,9 @@ GAME RULES:
 - The first player to reach 100 points on GLOBAL score wins the game
 
 */
-
-let scores = [0,0], //Initial zero point score for two player sides
-    roundScore = 0, //Sum of total score accumulated
-    activePlayer = 0; //Denote which is the activer player's turn
+let scores, roundScore, activePlayer;
+init();
     
-
- 
- document.querySelector('.dice').style.display = 'none' //Change CSS style display to none to hide the dice at the beginning  of game
- 
  //Cick on button to roll dice
  document.querySelector('.btn-roll').addEventListener('click', function() {
     let dice = Math.floor(Math.random() * 6) + 1; //Generate random dice number from one to six
@@ -44,7 +38,7 @@ let scores = [0,0], //Initial zero point score for two player sides
     document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
 
     //Check if the player won the game
-    if (scores[activePlayer] >= 40) {
+    if (scores[activePlayer] >= 20) {
         document.querySelector('#name-'+ activePlayer).textContent = 'Winner!';
         document.querySelector('.dice').style.display = 'none';
         document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
@@ -72,3 +66,27 @@ let scores = [0,0], //Initial zero point score for two player sides
     document.querySelector('.dice').style.display = 'none';   
 
  }
+
+ document.querySelector('.btn-new').addEventListener('click', init);
+
+function init() {
+     scores = [0,0]; //Initial zero point score for two player sides
+     roundScore = 0; //Sum of total score accumulated
+     activePlayer = 0; //Denote which is the activer player's turn
+
+    document.querySelector('.dice').style.display = 'none' //Change CSS style display to none to hide the dice at the beginning  of game
+
+    document.getElementById('score-0').textContent = '0';
+    document.getElementById('score-1').textContent = '0';
+    document.getElementById('current-0').textContent = '0';
+    document.getElementById('current-0').textContent = '0';
+    document.getElementById('name-0').textContent = 'Player 1';
+    document.getElementById('name-1').textContent = 'Player 2';
+
+    document.querySelector('.player-0-panel').classList.remove('winner');
+    document.querySelector('.player-1-panel').classList.remove('winner');
+    document.querySelector('.player-0-panel').classList.remove('active');
+    document.querySelector('.player-1-panel').classList.remove('active');
+    document.querySelector('.player-0-panel').classList.add('active');
+
+}

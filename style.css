@@ -1,6 +1,34 @@
 /**********************************************
 *** GENERAL
 **********************************************/
+.final-score {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    top: 520px;
+    color: #555;
+    font-family: 'Lato';
+    text-align: center;
+    padding: 10px;
+    width: 160px;
+    text-transform: uppercase;
+}
+
+.final-score:focus {
+    outline: none;
+}
+
+#dice-1 {
+    top: 120px;
+}
+
+#dice-2 {
+    top: 250px;
+}
 
 * {
     margin: 0;
@@ -13,6 +41,7 @@
     content: "";
     display: table;
     clear: both;
+
 }
 
 body {
